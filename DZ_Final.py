@@ -2,8 +2,8 @@
 def input_error(func):
     def integ(n):
         try:                        
-            result = func(n)
-            return result
+            
+            return func(n)
         
         except KeyError:
             print(KeyError)
@@ -37,7 +37,7 @@ def add(n):
 def change(n):
     nick = n.split(" ")[1]
     phone_n = n.split(" ")[2]
-    if nick in book_phone.values():
+    if nick in book_phone.keys():
         for dic in book_phone:
             if nick == dic:
                 book_phone.update({nick: phone_n})
@@ -74,25 +74,25 @@ def main():
     global book_phone
     book_phone = {}
     while True:
-        n = input("Чекаю команди ")                
+        n = input("Чекаю команди ")
         #n = n.split(' ')
-        if n in ("good bye", "close", "exit"):
+        if n.lower() in ("good bye", "close", "exit"):
             print("Good bye!")
             break
 
-        elif n == 'hello':
+        elif n.lower() == 'hello':
             print("How can I help you?")
 
-        elif n.split(" ")[0] == 'show_all':
+        elif n.split(" ")[0].lower() == 'show_all':
             print(show_all(n))
         
-        elif n.split(" ")[0] == 'change':
+        elif n.split(" ")[0].lower() == 'change':
             print(change(n))
         
-        elif n.split(" ")[0] == 'phone':
+        elif n.split(" ")[0].lower() == 'phone':
             print(phone(n))
 
-        elif n.split(" ")[0] == 'add':
+        elif n.split(" ")[0].lower() == 'add':
             print(add(n))           
         else:
             print("доступні команди add, change, phone, show_all, good bye, close, exit")
