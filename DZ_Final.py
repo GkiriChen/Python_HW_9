@@ -23,9 +23,9 @@ def input_error(func):
 
 @input_error
 def add(n):   
-    print(n)
-    nick = n[1]
-    phone_n = n[2]    
+    #print(n)
+    nick = n.split(" ")[1]
+    phone_n = n.split(" ")[2]    
     if book_phone.get(nick) is None:
         book_phone.update({nick: phone_n})
         return f"додан контакт {nick} з номером {phone_n}"
@@ -35,8 +35,8 @@ def add(n):
 
 @input_error
 def change(n):
-    nick = n[1]
-    phone_n = n[2]
+    nick = n.split(" ")[1]
+    phone_n = n.split(" ")[2]
     if nick in book_phone.values():
         for dic in book_phone:
             if nick == dic:
@@ -47,8 +47,8 @@ def change(n):
 
 @input_error
 def phone(n):
-    nick = n[1]
-    phone_n = n[2]
+    nick = n.split(" ")[1]
+    phone_n = n.split(" ")[2]
 
     if nick in book_phone.keys():
         for item, value in book_phone.items():
@@ -59,8 +59,8 @@ def phone(n):
 
 @input_error
 def show_all(n):
-    # nick = n[1]
-    # phone_n = n[2]
+    # nick = n.split(" ")[1]
+    # phone_n = n.split(" ")[2]
     book = ''
     #print(len(book_phone.values()))
     if len(book_phone.values()) != 0:
@@ -75,24 +75,24 @@ def main():
     book_phone = {}
     while True:
         n = input("Чекаю команди ")                
-        n = n.split(' ')
-        if n[0] in ("good bye", "close", "exit"):
+        #n = n.split(' ')
+        if n in ("good bye", "close", "exit"):
             print("Good bye!")
             break
 
-        elif n[0] == 'hello':
+        elif n == 'hello':
             print("How can I help you?")
 
-        elif n[0] == 'show_all':
+        elif n.split(" ")[0] == 'show_all':
             print(show_all(n))
         
-        elif n[0] == 'change':
+        elif n.split(" ")[0] == 'change':
             print(change(n))
         
-        elif n[0] == 'phone':
+        elif n.split(" ")[0] == 'phone':
             print(phone(n))
 
-        elif n[0] == 'add':
+        elif n.split(" ")[0] == 'add':
             print(add(n))           
         else:
             print("доступні команди add, change, phone, show_all, good bye, close, exit")
